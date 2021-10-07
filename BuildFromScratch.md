@@ -106,3 +106,33 @@ echo $ROS_PACKAGE_PATH
 It should return `/home/pi/catkin_ws/src:/opt/ros/noetic/share `.
 
 ## Step 5: Download this Repository to the Pi.
+- Go to the destination folder.
+```
+cd ~/catkin_ws/src
+```
+- Clone to destination.
+```
+git clone https://github.com/zmhall42/AMDRobot_ROS.git
+```
+- Build the package in the catkin workspace.
+```
+cd ~/catkin_ws 
+```
+```
+catkin_make
+```
+- Permenantly add the workspace to the ROS environment by sourcing the generated setup file.
+```
+cd ~
+```
+```
+nano .bashrc
+```
+Type at the bottom of the `.bashrc` file these two lines:
+```
+source /opt/ros/noetic/setup.bash
+source /home/pi/catkin_ws/devel/setup.bash
+```
+To exit, hit `CTRL+X`, `Y`, then hit `enter`.
+
+You are now caught back up.  Simple, right?
