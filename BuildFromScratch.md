@@ -63,3 +63,18 @@ sudo reboot now
 Of course, log back in on start up.
 - Now we can log in using PuTTY.  Remember the IP you got at the end of Step 1? No? You should've written it down.  If not, use `hostname -I` to get it again.  Open PuTTY and make sure `Session` is selected in the top left under `Category`.  In the `Host Name` blank, type the IP of the Raspberry Pi.  Make sure the `SSH` bubble is selected below the IP and the `Port` is set to 22.  Save this setup as a profile for easier loading by entering a name in the `Saved Session` blank and clicking `Save`.  When you reboot the Pi from PuTTY, you lose connection with it and you have to do this step everytime you want to open it.  It saves time to create an easy to remember profile name so you can start PuTTY, select the profile name, and hit load.  Now select `Open` at the bottom right to SSH into the Pi's terminal.
 - Log in again.  Now you can run commands from you computer to control the Pi.
+
+## Step 3: Configure the Pi's settings.
+- In the terminal (Pi or PuTTy), type the following to begin setting up the Pi for your area:
+```
+sudo raspi-config
+```
+- Since I stated above how to navigate this menu, I'll skip the baby talk and get to the nitty-gritty.  Rapid fire, let's go.  Go to `1 System Options`, `S4 Hostname`, `Enter`.  The Robot should be named `AMDRobot-Robot` and the Base station should be named `AMDRobot-Base`.  Then hit `Enter`.
+- Now go to `5 Localization Options`, `L2 Timezone`, select `America`, then `Chicago` for CST.
+- Now go to `5 Localization Options`, `L4 WLAN Country`, select `US`, then `Enter` to confirm.
+- Now go to `6 Update` to update the changes and update the tool to the lastest version.  Once this completes, you're donw with the configuration tool.  Select `FINISH` to escape.
+- Reboot the Pi to make the changes.  PuTTy will lose connection, but that's okay.  That's why we created a profile to remote in faster.  You did do that, didn't you?
+
+## Step 4: Set up the catkin workspace for creating and running custom ROS code.
+
+## Step 5: Download this Repository to the Pi.
