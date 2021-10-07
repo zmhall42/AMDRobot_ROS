@@ -133,6 +133,6 @@ Type at the bottom of the `.bashrc` file these two lines:
 source /opt/ros/noetic/setup.bash
 source /home/pi/catkin_ws/devel/setup.bash
 ```
-To exit, hit `CTRL+X`, `Y`, then hit `enter`.
+To exit, hit `CTRL` + `X`, `Y`, then hit `enter`.
 
 You are now caught back up.  Simple, right?
