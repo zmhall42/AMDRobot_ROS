@@ -89,4 +89,17 @@ source /home/pi/catkin_ws/devel/setup.bash
 ```
 To exit, hit `CTRL+X`, `Y`, then hit `enter`.
 
+## Using this Repo.
+### Updating the local version from the cloud.
+- Go to root of the repo on the local machine.
+```
+cd ~/catkin_ws/src/AMDRobot_ROS/
+```
+- Fetch and merge changes from Github.
+```
+git pull
+```
+### Add newly created local files to Github repo.
+### Push changes to Github repo.
+
 ## Future Expansion
