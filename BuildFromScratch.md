@@ -1,7 +1,7 @@
 # Build From Scratch
 Last Updated: 2021-10-06
 
-Latest addition: Added this repository to the robot and build locally.
+Latest addition: Added this repository to the Pi and built locally.
 
 If we lose the project for any reason, this file contains the exact steps to follow to get back to the most recent state of the project.  Follow all steps in order unless stated otherwise.  All steps work for both the Robot and the Base Station unless otherwise noted.
 
@@ -76,5 +76,33 @@ sudo raspi-config
 - Reboot the Pi to make the changes.  PuTTy will lose connection, but that's okay.  That's why we created a profile to remote in faster.  You did do that, didn't you?
 
 ## Step 4: Set up the catkin workspace for creating and running custom ROS code.
+- Make sure the catkin workspace found at `~/catkin_ws` has been created.
+```
+cd ~ && ls -a
+```
+- If you see a folder in blue called `catkin_ws`, it exists.  If it does not exist, something is wrong with the image file.  The SD Card may need to be re-imaged, but this problem has yet to occur.
+- Source the catkin environment.
+```
+source /opt/ros/noetic/setup.bash
+```
+- Create and build the catkin workspace.
+```
+mkdir -p ~/catkin_ws/src 
+```
+```
+cd ~/catkin_ws/ 
+```
+```
+catkin_make
+```
+- Source the workspace to the environment.
+```
+source devel/setup.bash
+```
+- Verify previous step occurred by typing the following.
+```
+echo $ROS_PACKAGE_PATH 
+```
+It should return `/home/pi/catkin_ws/src:/opt/ros/noetic/share `.
 
 ## Step 5: Download this Repository to the Pi.
