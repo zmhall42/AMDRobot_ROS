@@ -104,24 +104,7 @@ source devel/setup.bash
 echo $ROS_PACKAGE_PATH 
 ```
 It should return `/home/pi/catkin_ws/src:/opt/ros/noetic/share `.
-
-## Step 5: Download this Repository to the Pi.
-- Go to the destination folder.
-```
-cd ~/catkin_ws/src
-```
-- Clone to destination.
-```
-git clone https://github.com/zmhall42/AMDRobot_ROS.git
-```
-- Build the package in the catkin workspace.
-```
-cd ~/catkin_ws 
-```
-```
-catkin_make
-```
-- Permenantly add the workspace to the ROS environment by sourcing the generated setup file.
+- Permenantly add the catkin workspace to the ROS environment by sourcing the generated setup file.
 ```
 cd ~
 ```
@@ -137,6 +120,40 @@ To exit, hit `CTRL` + `X`, `Y`, then hit `enter`.
 - Compile the newly downloaded repository.
 ```
 cd ~/catkin_ws
+```
+```
+catkin_make
+```
+
+## Step 5: Download the Navio2 Examples and Source Code Repo to the Pi.
+- Go to the destination folder.
+```
+cd ~/catkin_ws/src
+```
+- Clone to destination.
+```
+git clone https://github.com/emlid/Navio2.git
+```
+- Build the package in the catkin workspace.
+```
+cd ~/catkin_ws 
+```
+```
+catkin_make
+```
+
+## Step 6: Download this Repository to the Pi.
+- Go to the destination folder.
+```
+cd ~/catkin_ws/src
+```
+- Clone to destination.
+```
+git clone https://github.com/zmhall42/AMDRobot_ROS.git
+```
+- Build the package in the catkin workspace.
+```
+cd ~/catkin_ws 
 ```
 ```
 catkin_make
