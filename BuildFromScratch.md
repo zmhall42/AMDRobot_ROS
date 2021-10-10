@@ -117,13 +117,6 @@ source /opt/ros/noetic/setup.bash
 source /home/pi/catkin_ws/devel/setup.bash
 ```
 To exit, hit `CTRL` + `X`, `Y`, then hit `enter`.
-- Compile the newly downloaded repository.
-```
-cd ~/catkin_ws
-```
-```
-catkin_make
-```
 
 ## Step 5: Download the Navio2 Examples and Source Code Repo to the Pi.
 - Go to the destination folder.
