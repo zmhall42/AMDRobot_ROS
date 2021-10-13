@@ -118,33 +118,27 @@ source /home/pi/catkin_ws/devel/setup.bash
 ```
 To exit, hit `CTRL` + `X`, `Y`, then hit `enter`.
 
-## Step 5: Download the Navio2 Examples and Source Code Repo to the Pi.
+## Step 5: Download all required repos.
+- For this project, we are using: this repo; the Navio2 examples repo; and the teleop_twist_keyboard repo.
 - Go to the destination folder.
 ```
 cd ~/catkin_ws/src
 ```
-- Clone to destination.
-```
-git clone https://github.com/emlid/Navio2.git
-```
-- Build the package in the catkin workspace.
-```
-cd ~/catkin_ws 
-```
-```
-catkin_make
-```
-
-## Step 6: Download this Repository to the Pi.
-- Go to the destination folder.
-```
-cd ~/catkin_ws/src
-```
-- Clone to destination.
+- Clone this repo to destination.
 ```
 git clone https://github.com/zmhall42/AMDRobot_ROS.git
 ```
-- Build the package in the catkin workspace.
+- Clone Navio2 repo to destination.
+```
+git clone https://github.com/emlid/Navio2.git
+```
+- Clone teleop-twist-keyboard repo to destination.
+```
+sudo apt-get install ros-noetic-teleop-twist-keyboard
+```
+
+## Step 6: Make the downloaded repos.
+- Build the packages in the catkin workspace.
 ```
 cd ~/catkin_ws 
 ```
