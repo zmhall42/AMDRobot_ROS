@@ -134,7 +134,7 @@ git clone https://github.com/emlid/Navio2.git
 ```
 - Clone teleop-twist-keyboard repo to destination.
 ```
-sudo apt-get install ros-noetic-teleop-twist-keyboard
+git clone https://github.com/ros-teleop/teleop_twist_keyboard.git
 ```
 
 ## Step 6: Make the downloaded repos.
