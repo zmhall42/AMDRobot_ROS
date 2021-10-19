@@ -27,7 +27,7 @@ sudo nano wpa_supplicant.conf
 ```
 - Erase everything in this file and replace it with the following:
 ```
-network {
+network={
   ssid="EagleNet"
   psk="yourpsk"
 }
