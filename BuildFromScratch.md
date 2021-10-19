@@ -71,6 +71,7 @@ sudo raspi-config
 ```
 - Since I stated above how to navigate this menu, I'll skip the baby talk and get to the nitty-gritty.  Rapid fire, let's go.  Go to `1 System Options`, `S4 Hostname`, `Enter`.  The Robot should be named `AMDRobot-Robot` and the Base station should be named `AMDRobot-Base`.  Then hit `Enter`.
 - Now go to `5 Localization Options`, `L2 Timezone`, select `America`, then `Chicago` for CST.
+- Now go to `5 Localization Options`, `L3 Keyboard Layout`, select `OK` on the selected keyboard, then `Other`, scroll to locate `US`, select `OK`, then scroll to the op and highlight `English US` then press OK to set the keyboad as a standard English keyboard.
 - Now go to `5 Localization Options`, `L4 WLAN Country`, select `US`, then `Enter` to confirm.
 - Now go to `6 Update` to update the changes and update the tool to the lastest version.  Once this completes, you're donw with the configuration tool.  Select `FINISH` to escape.
 - Reboot the Pi to make the changes.  PuTTy will lose connection, but that's okay.  That's why we created a profile to remote in faster.  You did do that, didn't you?
