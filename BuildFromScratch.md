@@ -23,7 +23,7 @@ cd /boot
 ```
 - In this folder we will need to modify a file to get on the school's Wi-Fi to complete the setup process.  Type the following to open the `wpa_supplicant` file so we can change the ssid or Wi-Fi network name and the psk or the Wi-Fi password:
 ```
-nano wpa_supplicant.conf
+sudo nano wpa_supplicant.conf
 ```
 - Erase everything in this file and replace it with the following:
 ```
