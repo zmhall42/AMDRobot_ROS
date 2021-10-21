@@ -55,6 +55,24 @@ sudo raspi-config
 - Reboot the Pi to make the changes.  PuTTy will lose connection, but that's okay.  That's why we created a profile to remote in faster.  You did do that, didn't you?
 
 ## Step 4: Set up the catkin workspace for creating and running custom ROS code.
+- Add official ROS key so the update command will work.
+```
+sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
+```
+This key may change over time, make sure to update the key if the above command fails to run.
+- Run the updater.
+```
+sudo apt-get update --allow-releaseinfo-change
+```
+- Install rosdep and tools for dependencies.
+```
+sudo apt-get install -y python-rosdep python-rosinstall-generator python-rosinstall build-essential cmake
+```
+This comand takes some time to execute.  Initialize rosdep after install.
+```
+sudo rosdep init
+```
+If it says a file exists and it must be deleted before running this command, DO NOT delete it. ignore this command.
 - Make sure the `.catkin` workspace found at `/opt/ros/noetic/` has been created.
 ```
 cd /opt/ros/noetic && ls -a
