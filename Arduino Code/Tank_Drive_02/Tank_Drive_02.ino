@@ -1,7 +1,9 @@
 /*
- * Output drive from cmd_vel topic
+ * V2 of Tank_Drive 01 using PID to control the motor speeds instead of shocking the 
+ * system with full power.
+ * 
  * AMDRobot-ROS Project
- * Created: 2021-10-26
+ * Created: 2021-10-27
  * Author(s): TTU Spring 2021 - Fall 2021 ECE Team 
  * 
  * Wiring:
@@ -20,6 +22,7 @@
  */
 #include <geometry_msgs/Twist.h>  //Use for drive message read
 #include <Kinematics.h> //converts linear x and angular z to left and right rotation speeds
+#include <PID_v1.h> //Official Arduino PID library for controlling outputs from an input
 
 //Arduino pin Setup
 #define L_PWM 11
@@ -44,6 +47,9 @@
 float linear_vel = 0.000; //init at 0, positive is forward m/s
 float angular_vel = 0.000; //init at 0, positive is CCW rad/s
 bool twistCb_flag = false;
+double L_Setpoint = 0, L_Input = 0, L_Output = 0; //variables used by Left PID
+double R_Setpoint = 0, R_Input = 0, R_Output = 0; //variables used by right PID
+double Kp = 2, Ki = 5, Kd = 1;  //PID tuning params 
 
 //ROS Defines ----------------------------------------------------------------------
 void twistCallback(const geometry_msgs::Twist& drive_vel) {
@@ -60,6 +66,10 @@ ros::Subscriber<geometry_msgs::Twist> sub_velocity("cmd_vel", twistCallback); //
 
 // Kinematic Defines ---------------------------------------------------------------
 Kinematics motors(MAX_MOTOR_RPM, WHEEL_DIAMETER, FR_WHEEL_DISTANCE, LR_WHEEL_DISTANCE, PWM_BITS);
+
+//PID DEFINES ----------------------------------------------------------------------
+PID left_PID(&L_Input, &L_Output, &L_Setpoint, Kp, Ki, Kd, DIRECT);
+PID right_PID(&R_Input, &R_Output, &R_Setpoint, Kp, Ki, Kd, DIRECT);
 
 //Functions ------------------------------------------------------------------------
 void motor_write(int left_PWM, int right_PWM)  {
@@ -100,6 +110,12 @@ void setup() {
   //ROS Setup
   nh.initNode();  //turn on node
   nh.subscribe(sub_velocity); //subscribe to cmd_vel topic using sub_velocity specs
+
+  //PID Setup
+  left_PID.SetOutputLimits(-MAX_PWM_WRITE, MAX_PWM_WRITE);  //change to range of analogWrite max, with direction
+  right_PID.SetOutputLimits(-MAX_PWM_WRITE, MAX_PWM_WRITE);
+  left_PID.SetMode(AUTOMATIC);  //Turn it on
+  right_PID.SetMode(AUTOMATIC);
 }
 
 //Main Loop ------------------------------------------------------------------------
@@ -108,12 +124,19 @@ void loop() {
     //get motor speed
     Kinematics::output motor_rpm;
     motor_rpm = motors.getRPM(linear_vel, 0, angular_vel);  //robot cannot move in the y direction.
-    int left_pwm = map(motor_rpm.motor1, -MAX_MOTOR_RPM, MAX_MOTOR_RPM, -MAX_PWM_WRITE, MAX_PWM_WRITE);
-    int right_pwm = map(motor_rpm.motor2, -MAX_MOTOR_RPM, MAX_MOTOR_RPM, -MAX_PWM_WRITE, MAX_PWM_WRITE);
-    motor_write(left_pwm, right_pwm);
-  
+    //change set velocities
+    L_Setpoint = map(motor_rpm.motor1, -MAX_MOTOR_RPM, MAX_MOTOR_RPM, -MAX_PWM_WRITE, MAX_PWM_WRITE);
+    R_Setpoint = map(motor_rpm.motor2, -MAX_MOTOR_RPM, MAX_MOTOR_RPM, -MAX_PWM_WRITE, MAX_PWM_WRITE);
+    
     twistCb_flag = false; //reset flag
   }
+
+  //PID
+  left_PID.Compute(); //compute PID output
+  right_PID.Compute();
+  motor_write(L_Output, R_Output); //write to motors
+  L_Input = L_Output; //Update the new to the value of the old
+  R_Input = R_Output;
   
   //run each loop
   nh.spinOnce();
