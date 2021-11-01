@@ -1,6 +1,8 @@
 # AMDRobot_ROS
 Collection of nodes created by the 2021 Autonomous Metal Detector Robot senior design group at Tennessee Technological University.  This is a joint project consisting of both a Mechanical and an Electrical Engineering group.  The robot is a tank-drive layout with a metal detector attached to it.  The remote base station is communicating with the robot over Wi-Fi using Ad Hoc mode.
 
+## **DO NOT USE Tank_Drive_02 ON THE UNO, IT LETS THE MAGIC SMOKE OUT** Redo the PID Setup and tuning and params.
+
 ## System Setup
 Note: This is written specifically for this project.  Following these instructions may not produce the same results for other creators.
 
