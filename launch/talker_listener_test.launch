@@ -1,14 +1,31 @@
 <launch>
+<!--Define both machines as rule of thumb in case they need to be specified in each node-->
+	<machine
+		name="robot"
+		address="10.104.195.71"
+	/>
+	<machine
+		name="base_station"
+		address=""
+	/>
+	<machine
+		name="computer_zach"
+		address="10.0.2.15"
+	/> 
+
+<!--Define nodes to be run-->
 	<node
+		machine="computer_zach"
+		name="talker"
 		pkg="AMDRobot_ROS"
 		type="talker"
-		name="talker"
 		output="screen"
 	/>
 	<node
+		machine="computer_zach"
+		name="listener"
 		pkg="AMDRobot_ROS"
 		type="listener"
-		name="listener"
 		output="screen"
 	/>
 </launch>
