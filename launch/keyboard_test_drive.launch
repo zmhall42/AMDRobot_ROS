@@ -1,0 +1,14 @@
+<launch>
+	<node
+		pkg="teleop_twist_keyboard"
+		type="teleop_twist_keyboard.py"
+		name="teleop_twist_keyboard"
+		output="screen"
+	/>
+	<node
+		pkg="rosserial_python"
+		type="serial_node.py"
+		name="serial_node"
+		args="/dev/ttyAMC0"
+	/>
+</launch>
