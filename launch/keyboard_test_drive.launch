@@ -6,7 +6,7 @@
 	/>
 	<machine
 		name="base_station"
-		address="10.104.195.72"
+		address="10.104.195.0"
 	/>
 	<machine
 		name="computer_zach"
@@ -26,6 +26,6 @@
 		name="serial_node"
 		pkg="rosserial_python"
 		type="serial_node.py"
-		args="/dev/ttyAMC0"
+		args="/dev/ttyAMC0"	<!--Address of the Arduinos USB on the Pi; was added at end of: rosrun rosserial serial_node.py /dev/ttyACM0-->
 	/>
 </launch>
