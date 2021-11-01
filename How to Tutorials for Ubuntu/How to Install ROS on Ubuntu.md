@@ -15,7 +15,7 @@ This markdown file (.md) is a step by step tutorial for installing ROS Noetic on
 
 
 
-# Istallation of Ubuntu ARM:
+# Istallation of ROS on Ubuntu:
 
 1.) The sources list needs to be set up so Ubuntu will accept software from `packages.ros.org`:
 
@@ -51,8 +51,7 @@ This markdown file (.md) is a step by step tutorial for installing ROS Noetic on
 
     source /opt/ros/noetic/setup.bash
 
-The above command will tell the shell where to look, but everytime a new shell is opened (opening a new terminal), the command must be executed to use ROS.  To setup the shell so the comman runs everytime, place the comman above in the `.bashrc` file.  The `.bashrc` executes everytime a new terminal window is opened.
-
+The above command will tell the terminal where to look, but everytime a new terminal is opened, the command must be executed to use ROS.  To setup the shell so the command runs everytime, place the command above in the `.bashrc` file.  The `.bashrc` executes everytime a new terminal window is opened.
 
     echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
 
@@ -76,5 +75,3 @@ Then to update the terminal, close output of the current one and open a new one,
 9.) To see if ROS was installed properly run:
 
     roscore
-
-
