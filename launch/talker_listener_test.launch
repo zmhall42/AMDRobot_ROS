@@ -6,7 +6,7 @@
 	/>
 	<machine
 		name="base_station"
-		address=""
+		address="10.104.195.72"
 	/>
 	<machine
 		name="computer_zach"
