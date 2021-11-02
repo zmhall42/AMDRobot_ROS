@@ -83,3 +83,4 @@
 36. nmcli d wifi hotspot ifname wlan1 ssid <insert_name_here> password <insert_password_here>
 
 **Successful for base station as AP but not the robot as a monitor.**
+After a restart, the only command you need to run in line 36 and everything works on the base station.
