@@ -22,62 +22,113 @@
 
 9. sudo apt install dkms
 
-### **Plug in the dongle** (it may be okay to leave plugged in before the first step, not sure because it was only ever tried with plugging in at this point)
+### **Plug in the dongle, NEVER EVER REMOVE NOW** (it may be okay to leave plugged in before the first step, not sure because it was only ever tried with plugging in at this point)
 
-10. sudo rmmod r8188eu.ko
+1. sudo rmmod r8188eu.ko
 
-11. git clone https://github.com/aircrack-ng/rtl8188eus
+2. git clone https://github.com/aircrack-ng/rtl8188eus
 
-12. ls    **(to make sure it's there)**
+3. ls    **(to make sure it's there)**
 
-13. cd rtl8188eus
+4. cd rtl8188eus
 
-14. sudo -i
+5. sudo -i
 
-15. echo "blacklist r8188eu" > "/etc/modprobe.d/realtek.conf"
+6. echo "blacklist r8188eu" > "/etc/modprobe.d/realtek.conf"
 
-16. exit
+7. exit
 
-17. sudo reboot now
+8. sudo reboot now
 
-18. sudo apt update
+9. sudo apt update
 
-19. cd rtl8188eus
+10. cd rtl8188eus
 
-20. sudo make
+11. sudo make
 
-21. sudo make install
+12. sudo make install
 
-22. sudo modprobe 8188eu
+13. sudo modprobe 8188eu
 
-23. cd ~
+14. cd ~
 
-24. sudo apt install wireless-tools
+15. sudo apt install wireless-tools
 
-25. iwconfig     **(make sure the dongle comes up, should be Nickname: WIFI@REALTEK.  Mine was on wlan1)**
+16. iwconfig     **(make sure the dongle comes up, should be Nickname: WIFI@REALTEK.  Mine was on wlan1)**
 
-26. sudo apt install net-tools
+17. sudo apt install net-tools
 
-27. sudo ifconfig wlan1 down
+18. sudo ifconfig wlan1 down
 
-28. sudo apt install aircrack-ng
+19. sudo apt install aircrack-ng
 
-29. sudo airmon-ng check kill
+20. sudo airmon-ng check kill
 
-## **Set Robot in monitor mode**
+### **Set Robot in monitor mode**
 
-30. iwconfig **(should see wlan0 in Auto mode for the dongle)**
+1. iwconfig **(should see wlan0 in Auto mode for the dongle)**
 
-31. sudo iwconfig wlan0 mode monitor
+2. sudo iwconfig wlan0 mode monitor
 
-32. iwconfig **(should see wlan 1 in Monitor mode)**
+3. iwconfig **(should see wlan 1 in Monitor mode)**
 
-33. sudo iwconfig wlan0 up **(start the thing)**
+4. sudo iwconfig wlan0 up **(start the thing)**
 
-34. sudo airplay-ng --test wlan0 **(injection test)**
+5. sudo airplay-ng --test wlan0 **(injection test)**
 
-35. sudo reboot now
+6. sudo reboot now
 
-## **Set in AP Mode**
+### **Set Base Station in AP Mode**
 
-36. nmcli d wifi hotspot ifname wlan1 ssid <insert_name_here> password <insert_password_here>
+(also do the above for the robot monitor mode, then do this)
+
+1. sudo nano /etc/netplan/50-cloud-init.yaml
+
+2. Change where you have `wlan0` set for EagleNet to `wlan1`
+
+3. sudo reboot now
+
+4. nmcli d wifi hotspot ifname wlan0 ssid AMDBase password raspberry
+
+## **Configure Wi-Fi networks on Robot**
+
+1. sudo nano /etc/netplan/50-could-init.yaml
+
+2. Add the following at the end (the wifis is in same column as `version: 2` and each indentation is 4 spaces, not tab.):
+
+```
+wifis: 
+    wlan1:
+        dhcp4: true
+        optional: true
+        access-points:
+            "EagleNet":
+                password: "E8fdADXR"
+    wlan0:
+        dhcp4: no
+        addresses: [10.42.0.2/24]
+        gateway4: 10.42.0.1
+        nameservers:
+            addresses: [8.8.8.8,8.8.4.4]
+        access-points:
+            "AMDBase":
+                password: "raspberry"
+```
+
+`Ctrl` + `x`, `y`, `Enter` to exit.
+
+3. sudo reboot now
+
+## **Set up AP to start automatically on reboot**
+
+1. sudo crontab -e
+
+2. Add at bottom: 
+
+```
+@reboot nmcli d wifi hotspot ifname wlan0 ssid AMDBase password raspberry
+```
+
+`Ctrl` + `x`, `y`, `Enter` to exit.
+
+4. sudo reboot now

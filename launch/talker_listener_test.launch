@@ -2,11 +2,11 @@
 <!--Define both machines as rule of thumb in case they need to be specified in each node-->
 	<machine
 		name="robot"
-		address="10.104.195.71"
+		address="10.42.0.2"
 	/>
 	<machine
 		name="base_station"
-		address="10.104.194.118"
+		address="10.42.0.1"
 	/>
 	<machine
 		name="computer_zach"
