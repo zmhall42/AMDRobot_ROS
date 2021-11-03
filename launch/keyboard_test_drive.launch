@@ -15,7 +15,7 @@
 
 <!--Define nodes to be run-->	
 	<node
-		machine="robot"
+		machine="base_station"
 		name="teleop_twist_keyboard"
 		pkg="teleop_twist_keyboard"
 		type="teleop_twist_keyboard.py"
@@ -26,6 +26,6 @@
 		name="serial_node"
 		pkg="rosserial_python"
 		type="serial_node.py"
-		args="/dev/ttyAMC0"	<!--Address of the Arduinos USB on the Pi; was added at end of: rosrun rosserial serial_node.py /dev/ttyACM0-->
+		args="/dev/ttyAMC0"	
 	/>
 </launch>
