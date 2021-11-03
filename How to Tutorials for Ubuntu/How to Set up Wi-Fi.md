@@ -64,23 +64,20 @@
 
 29. sudo airmon-ng check kill
 
-## **Set in monitor mode**
+## **Set Robot in monitor mode**
 
-30. iwconfig **(should see wlan 1 in Auto mode)**
+30. iwconfig **(should see wlan0 in Auto mode for the dongle)**
 
-31. sudo iwconfig wlan1 mode monitor    **--robot stuck here**
+31. sudo iwconfig wlan0 mode monitor
 
 32. iwconfig **(should see wlan 1 in Monitor mode)**
 
-33. sudo iwconfig wlan1 up **(start the thing)**
+33. sudo iwconfig wlan0 up **(start the thing)**
 
-34. sudo airplay-ng --test wlan1 **(injection test)**
+34. sudo airplay-ng --test wlan0 **(injection test)**
 
 35. sudo reboot now
 
 ## **Set in AP Mode**
 
 36. nmcli d wifi hotspot ifname wlan1 ssid <insert_name_here> password <insert_password_here>
-
-**Successful for base station as AP but not the robot as a monitor.**
-After a restart, the only command you need to run in line 36 and everything works on the base station.
