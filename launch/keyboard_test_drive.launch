@@ -3,10 +3,14 @@
 	<machine
 		name="robot"
 		address="10.42.0.2"
+		user="ubuntu"
+		password="ttu_AMD1"
 	/>
 	<machine
 		name="base_station"
 		address="10.42.0.1"
+		user="AMDRobot"
+		password="ttu_AMD1"
 	/>
 	<machine
 		name="computer_zach"
