@@ -1,0 +1,14 @@
+<launch>
+    <machine
+		name="robot"
+		address="10.42.0.2"
+	/>
+
+    <node
+		machine="robot"
+		name="serial_node"
+		pkg="rosserial_python"
+		type="serial_node.py"
+		args="/dev/ttyACM0"	
+	/>
+</launch>
