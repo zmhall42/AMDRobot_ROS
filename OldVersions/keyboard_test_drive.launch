@@ -1,3 +1,4 @@
+<!--Defective - Gives an error when launched saying RLException: ERROR: unable to contact ROS master at (IP)-->
 <launch>
 <!--Define both machines as rule of thumb in case they need to be specified in each node-->
 	<machine
