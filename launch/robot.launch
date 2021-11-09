@@ -4,11 +4,20 @@
 		address="10.42.0.2"
 	/>
 
+<!--Arduino Uno Drive Stuff-->
     <node
 		machine="robot"
-		name="serial_node"
+		name="serial_node_1"
 		pkg="rosserial_python"
 		type="serial_node.py"
 		args="/dev/ttyACM0"	
+	/>
+<!--Arduino Mega Sensor Stuff-->
+	<node
+		machine="robot"
+		name="serial_node_2"
+		pkg="rosserial_python"
+		type="serial_node.py"
+		args="/dev/ttyACM1"	
 	/>
 </launch>
