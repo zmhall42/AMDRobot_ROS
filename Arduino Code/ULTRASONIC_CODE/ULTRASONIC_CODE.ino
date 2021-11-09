@@ -23,15 +23,9 @@ unsigned int distance3; // variable for the distance measurement
 long duration4, duration5;
 unsigned int distance4, distance5;
 
-
-
-
 ros::NodeHandle nh;
 std_msgs::UInt16MultiArray Sensors;
 ros::Publisher pub_Sensors("/sensor_values",&Sensors);
-
-
-
 
 void setup() {
   pinMode(trigPin1, OUTPUT); // Sets the trigPin as an OUTPUT
@@ -40,25 +34,21 @@ void setup() {
   pinMode(echoPin2, INPUT); // Sets the echoPin as an INPUT
   pinMode(trigPin3, OUTPUT); // Sets the trigPin as an OUTPUT
   pinMode(echoPin3, INPUT); // Sets the echoPin as an INPUT
-  Serial.begin(9600); // // Serial Communication is starting with 9600 of baudrate speed
+  //Serial.begin(9600); // // Serial Communication is starting with 9600 of baudrate speed
  
-    nh.getHardware()->setBaud(115200);
-    nh.initNode();
-    Sensors.layout.dim = (std_msgs::MultiArrayDimension *) malloc(sizeof(std_msgs::MultiArrayDimension)*2);
-    Sensors.layout.dim[0].label = "sensors";
-    Sensors.layout.dim[0].size = 5;
-    Sensors.layout.dim[0].stride = 1;
-    Sensors.layout.data_offset = 0;
-    Sensors.data = (unsigned int *)malloc(sizeof(unsigned int)*8);
-    Sensors.data_length = 5;
-    nh.advertise(pub_Sensors);
-
-
+  nh.getHardware()->setBaud(115200);
+  nh.initNode();
+  Sensors.layout.dim = (std_msgs::MultiArrayDimension *) malloc(sizeof(std_msgs::MultiArrayDimension)*2);
+  Sensors.layout.dim[0].label = "sensors";
+  Sensors.layout.dim[0].size = 5;
+  Sensors.layout.dim[0].stride = 1;
+  Sensors.layout.data_offset = 0;
+  Sensors.data = (unsigned int *)malloc(sizeof(unsigned int)*8);
+  Sensors.data_length = 5;
+  nh.advertise(pub_Sensors);
 }
-void loop() {
 
-   
-    
+void loop() {
   // Clears the trigPin condition
   digitalWrite(trigPin1, LOW);
   delayMicroseconds(2);
@@ -99,7 +89,7 @@ void loop() {
   Sensors.data[2] = distance3;
   // Displays the distance on the Serial Monitor
    // Clears the trigPin condition
-pinMode(pingPin1, OUTPUT);
+  pinMode(pingPin1, OUTPUT);
   digitalWrite(pingPin1, LOW);
   delayMicroseconds(2);
   digitalWrite(pingPin1, HIGH);
