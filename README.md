@@ -48,7 +48,7 @@ hostname -I
 
 Type in each terminal.  If plugged into ethernet too, the first IP is the ethernet connection IP and the second is the WI-FI IP.  If only connected via 1 method, it will return the IP of that method.  Use the IP of the method you wish to use.
 
-- In the Base Station, type the following:
+- In the Base Station, type the following at the botom of the bashrc file in `~/.bashrc`:
 
 ```
 export ROS_MASTER_URI=http://Base_Station_IP:11311
@@ -62,7 +62,9 @@ export ROS_HOSTNAME=Base_Station_IP
 export ROS_IP=Base_Station_IP
 ```
 
-- In the Robot, type the following:
+Save and Exit using `Ctrl` + `x`, `y`, then `Enter`.
+
+- In the Robot, type the following at the botom of the bashrc file in `~/.bashrc`:
 
 ```
 export ROS_MASTER_URI=http://Base_Station_IP:11311
@@ -77,6 +79,22 @@ export ROS_HOSTNAME=Robot_IP
 ```
 export ROS_IP=Robot_IP
 ```
+
+Save and Exit using `trl` + `x`, `y`, then `Enter`.
+
+- Before running the core, you must secure shell (SSH) into each machine from the other machine to make sure they can recognize each other when ROS runs.  Type the following on the robot:
+
+```
+ssh AMDRobot@Base_Station_IP
+```
+
+Type yes to accept the security key and enter the password.  Once you have successfully ssh's in, you can type `exit` to go back to the robot's terminal.  On the Base station, type:
+
+```
+ssh ubuntu@Robot_IP
+```
+
+Type yes to accept the security key and enter the password.  Once you have successfully ssh's in, you can type `exit` to go back to the base station's terminal.  Note that the IP's must be entered as XXX.XXX.XXX.XXX, not "Robot_IP" or "Base_Station_IP".
 
 - In the base station, use tmux on the Base Station and create 2 windows.
 
