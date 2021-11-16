@@ -92,7 +92,7 @@
 
 ## **Configure Wi-Fi networks on Robot**
 
-1. sudo nano /etc/netplan/50-could-init.yaml
+1. sudo nano /etc/netplan/50-cloud-init.yaml
 
 2. Add the following at the end (the wifis is in same column as `version: 2` and each indentation is 4 spaces, not tab.):
 
