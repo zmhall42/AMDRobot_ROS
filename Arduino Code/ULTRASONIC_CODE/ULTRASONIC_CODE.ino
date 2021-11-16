@@ -36,7 +36,7 @@ void setup() {
   pinMode(echoPin3, INPUT); // Sets the echoPin as an INPUT
   //Serial.begin(9600); // // Serial Communication is starting with 9600 of baudrate speed
  
-  nh.getHardware()->setBaud(115200);
+  nh.getHardware()->setBaud(57600);
   nh.initNode();
   Sensors.layout.dim = (std_msgs::MultiArrayDimension *) malloc(sizeof(std_msgs::MultiArrayDimension)*2);
   Sensors.layout.dim[0].label = "sensors";
